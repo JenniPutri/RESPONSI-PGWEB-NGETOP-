@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title>NGETOP</title>
+
+  <!-- Font Awesome and Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <link rel="stylesheet" href="plugin/leaflet-search-master/leaflet-search-master/dist/leaflet-search.min.css">
+  <link rel="stylesheet"
+    href="plugin/Leaflet.defaultextent-master/Leaflet.defaultextent-master/dist/leaflet.defaultextent.css">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Roboto:wght@400;500&display=swap"
+    rel="stylesheet">
+
+  <!-- Custom Styles -->
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #edaaaa;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav {
+            background-color: #0a0909;
+            color: #f0f4f4;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            padding: 10px 0;
+        }
+
+        .navbar-brand {
+            font-size: 1.6em;
+            font-weight: bold;
+            color: #f0f4f4;
+            text-transform: uppercase;
+        }
+
+        .navbar-nav .nav-link {
+            color: #f0f4f4;
+            padding: 8px 12px;
+            font-size: 1em;
+            font-weight: 600;
+        }
+
+        .navbar-nav .nav-link:hover {
+            background-color: #4f4f4f;
+            color: #f0f4f4;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #ec4471;
+        }
+
+    .masthead {
+      background-image: url('assets/img/home.jpg');
+      background-size: cover;
+      background-position: center center;
+      color: white;
+      padding: 200px 0;
+      position: relative;
+      text-align: center;
+    }
+
+    .masthead:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 0;
+    }
+
+    .masthead-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .masthead-headin {
+      font-size: 4rem;
+      font-weight: bold;
+      color: #ff6f61;
+      text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    .masthead-subheadin {
+      font-size: 1.8rem;
+      color: #f9fafa;
+      font-style: italic;
+      margin-bottom: 40px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(to right, #a10b33, #ff6f61);
+      border: none;
+      border-radius: 50px;
+      padding: 12px 36px;
+      box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(to right, #ff6f61, #f3124e);
+      box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    section {
+      padding: 10px 0;
+      background-color: #edaaaa;
+    }
+
+    section h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #7b0d0d;
+      margin-bottom: 20px;
+    }
+
+    section p {
+      font-size: 1.1rem;
+      color: #484646;
+      line-height: 1.6;
+    }
+
+    .section-image {
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(240, 232, 232, 0.1);
+    }
+
+    .footer {
+      background-color: #333;
+      color: #edaaaa;
+      padding: 40px 0;
+      text-align: center;
+    }
+
+    .footer h3 {
+      margin-bottom: 10px;
+      font-weight: 700;
+      font-size: 1.8rem;
+    }
+
+    .footer .small {
+      font-size: 0.9rem;
+    }
+
+    .footer .icons a {
+      margin: 0 15px;
+      color: #fff;
+      font-size: 1.5rem;
+      transition: color 0.3s;
+    }
+
+    .footer .icons a:hover {
+      color: #edaaaa;
+    }
+
+    .carousel-item img {
+      object-fit: cover;
+      height: 300px;
+      width: 100%;
+    }
+
+    .carousel-item header {
+      text-align: center;
+    }
+
+    .carousel-item header h3 {
+      margin: 10px 0;
+      font-size: 1.5rem;
+      color: #ec4471;
+    }
+
+    .carousel-item header h3 a {
+      color: #7b0d0d;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .carousel-item header h3 a:hover {
+      color: #12c2f3;
+      text-decoration: underline;
+    }
+
+    .carousel-item p {
+      text-align: center;
+      font-size: 1rem;
+      color: #e60c88;
+    }
+  </style>
+</head>
+
+<body id="page-top">
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <i class="fas fa-map-marked-alt"></i> WEBGIS Wisata Lan Kuliner Yogyakarta
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="data.html">
+                    <i class="fas fa-database"></i> Data
+                </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="peta.html">
+                  <i class="fas fa-map"></i> Maps
+              </a>
+              <li class="nav-item">
+                <a class="nav-link" href="info.html">
+                    <i class="fas fa-info-circle"></i> Info
+                </a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Masthead -->
+  <header class="masthead">
+    <div class="masthead-content">
+      <div class="container px-5">
+        <h1 class="masthead-headin mb-0">NGETOP</h1>
+        <h2 class="masthead-subheadin mb-0">Nglampahi Eksplorasi Wisata lan Kuliner Yogyakarta</h2>
+        <a class="btn btn-primary btn-xl mt-5" href="javascript:void(0);"
+          onclick="scrollToSection('section1')">Selengkapnya</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <section id="section1">
+  </section>
+  <section class="info-section mt-5">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6 text-center text-md-start">
+          <h2 class="display-4">Kulon Nuwun Jogja</h2>
+          <p style="text-align: justify;">
+            Selamat datang di Yogyakarta, kota yang memikat dengan kekayaan budaya, destinasi wisata menakjubkan, dan
+            kuliner yang menggugah selera. Temukan pesona Keraton Yogyakarta yang megah, Taman Sari yang indah, dan
+            keunikan Malioboro yang selalu hidup dengan keramaian. Jangan lewatkan Museum Benteng Vredeburg yang sarat
+            sejarah, Alun-Alun Kidul yang menawarkan keseruan bermain, dan Kotagede yang memancarkan keanggunan masa
+            lalu. Nikmati keanekaragaman satwa di Gembira Loka Zoo atau kunjungi Tugu Yogyakarta yang ikonik. Jelajahi
+            Museum Sonobudoyo dan Titik Nol Kilometer untuk merasakan kedalaman sejarah kota ini!
+          </p>
+          <a class="btn btn-primary btn-xl rounded-pill mt-5" href="javascript:void(0);"
+            onclick="scrollToSection('section2')">Selengkapnya</a>
+        </div>
+
+        <!-- Carousel -->
+        <div class="col-md-6">
+          <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <a href="#">
+                  <img src="assets/img/keraton.jpg" class="d-block w-100" alt="Keraton Yogakarta">
+                </a>
+                <header>
+                  <h3><a href="https://maps.app.goo.gl/kSchwBbveuSe8N5C6">Keraton Yogakarta Hadiningrat</a></h3>
+                </header>
+                <p> Jantung budaya Jawa yang penuh pesona! Temukan keindahan arsitektur kerajaan, saksikan tradisi
+                  leluhur seperti gamelan dan tari, serta eksplorasi koleksi sejarah yang memikat. Keraton adalah tempat
+                  terbaik untuk merasakan nuansa Jogja yang otentik. Singgah di sini bukan sekadar perjalanan, tapi
+                  pengalaman yang tak terlupakan!
+                </p>
+              </div>
+              <div class="carousel-item">
+                <a href="#">
+                  <img src="assets/img/tamansari.jpg" class="d-block w-100" alt="Taman Sari">
+                </a>
+                <header>
+                  <h3><a href="https://maps.app.goo.gl/GvAWRxoUsPkA5xR69">Kampung Wisata Taman Sari</a></h3>
+                </header>
+                <p>Jelajahi jejak sejarah di bekas taman kerajaan yang memukau! Nikmati pengalaman magis di kolam
+                  pemandian dan lorong bawah tanahnya, tempat legenda dan keindahan berpadu sempurna.</p>
+              </div>
+              <div class="carousel-item">
+                <a href="#">
+                  <img src="assets/img/malio.jpg" class="d-block w-100" alt="Malioboro">
+                </a>
+                <header>
+                  <h3><a href="https://maps.app.goo.gl/obnSUqMEtr5wENhr5">Malioboro</a></h3>
+                </header>
+                <p>Surga belanja dan kuliner dengan suasana Jogja yang khas! Dari batik hingga jajanan kaki lima, setiap
+                  sudut Malioboro menawarkan pengalaman tak terlupakan, terutama saat malam dengan gemerlap lampu
+                  jalanan.</p>
+              </div>
+              <div class="carousel-item">
+                <a href="#">
+                  <img src="assets/img/museum.jpg" class="d-block w-100" alt="Museum Vredeburg">
+                </a>
+                <header>
+                  <h3><a href="https://maps.app.goo.gl/qpqij55woKDwWAaK7">Museum Vredeburg</a></h3>
+                </header>
+                <p>Tempat terbaik untuk menyelami sejarah perjuangan bangsa melalui diorama interaktif. Museum ini
+                  membawa Anda kembali ke masa perjuangan kemerdekaan dengan cara yang hidup dan mendalam.
+                </p>
+              </div>
+              <div class="carousel-item">
+                <a href="#">
+                  <img src="assets/img/alun.jpg" class="d-block w-100" alt="Alun Alun Kidul">
+                </a>
+                <header>
+                  <h3><a href="https://maps.app.goo.gl/4wHN3EC9PnXeL3oK7">Alun Alun Kidul</a></h3>
+                </header>
+                <p>Malam penuh keseruan di pusat kota Jogja! Coba jalan “masangin” di antara beringin kembar atau
+                  nikmati odong-odong warna-warni sambil mencicipi jajanan khas yang menggugah selera.</p>
+              </div>
+              <div class="carousel-item">
+                <a href="#">
+                  <img src="assets/img/kotagede.jpg" class="d-block w-100" alt="Kotagede">
+                </a>
+                <header>
+                  <h3><a href="https://maps.app.goo.gl/R6e6J8Z9MCAryghNA">Masjid Gedhe Mataram Kotagede</a></h3>
+                </header>
+                <p>Masjid bersejarah yang menjadi saksi kejayaan Kerajaan Mataram Islam. Dengan arsitektur khas Jawa dan
+                  suasana yang tenang, tempat ini cocok untuk beribadah sekaligus menikmati jejak sejarah Islam di
+                  Yogyakarta.</p>
+              </div>
+              <div class="carousel-item">
+                <a href="#">
+                  <img src="assets/img/zoo.jpg" class="d-block w-100" alt="Gembira Loka Zoo">
+                </a>
+                <header>
+                  <h3><a href="https://maps.app.goo.gl/FiPfXxgXW311DytV8">Gembira Loka Zoo</a></h3>
+                </header>
+                <p>Habiskan waktu bersama keluarga di kebun binatang yang penuh satwa eksotis. Dari memberi makan hewan
+                  hingga wahana edukasi yang seru, ini tempat sempurna untuk liburan.
+                </p>
+              </div>
+              <div class="carousel-item">
+                <a href="#">
+                  <img src="assets/img/tugu.jpg" class="d-block w-100" alt="Tugu Jogja">
+                </a>
+                <header>
+                  <h3><a href="https://maps.app.goo.gl/SHBX7ff6rLeztcuW7">Tugu Jogja</a></h3>
+                </header>
+                <p>Monumen ikonik yang menjadi simbol filosofi dan budaya Jogja ini tidak hanya indah, tapi juga sarat
+                  makna sejarah. Abadikan momen Anda di sini, dan rasakan aura khas Jogja yang begitu memikat. Dengan
+                  pencahayaan malam yang memukau, Tugu ini adalah spot foto wajib yang akan membuat feed Instagram Anda
+                  semakin estetik!</p>
+              </div>
+              <div class="carousel-item">
+                <a href="#">
+                  <img src="assets/img/sonobudoyo.jpg" class="d-block w-100" alt="Museum Sonobudoyo">
+                </a>
+                <header>
+                  <h3><a href="https://maps.app.goo.gl/QzpkbANkXJdE9zWY8">Museum Sonobudoyo</a></h3>
+                </header>
+                <p>Mau jadi saksi bisu dari kekayaan seni dan budaya Jawa? Museum Sonobudoyo jawabannya! Dari wayang
+                  kulit yang bikin terkesima hingga gamelan yang mengalun syahdu, tempat ini wajib dikunjungi oleh siapa
+                  saja yang penasaran dengan tradisi dan sejarah Jogja. Dijamin, bakal seru banget!</p>
+              </div>
+              <div class="carousel-item">
+                <a href="#">
+                  <img src="assets/img/nol.jpg" class="d-block w-100" alt="Titik Nol">
+                </a>
+                <header>
+                  <h3><a href="https://maps.app.goo.gl/ttKHCTxYZ4EeJaS49">Titik Nol Kilometer Yogyakarta</a></h3>
+                </header>
+                <p>Titik ini bukan hanya tempat bertemu, tapi juga jantung dari sejarah Yogyakarta. Dikelilingi
+                  bangunan-bangunan bersejarah, di sini Anda bisa merasakan atmosfer kota lama yang masih hidup. Dari
+                  sini, semua jalan menuju masa lalu Jogja, sambil menikmati suasana santai yang bikin betah
+                  berlama-lama!</p>
+              </div>
+            </div>
+            <!-- Kontrol Carousel -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content Section 2 -->
+  <section id="section2">
+  </section>
+  <section class="info-section mt-4">
+    <div class="container">
+      <div class="row align-items-center">
+        <!-- Text Content -->
+        <div class="col-md-6 text-center text-md-start">
+          <h2 class="display-4">Jangan Lupa Makan</h2>
+          <p style="text-align: justify;">
+            Yogyakarta, surga kuliner yang wajib dicicipi, pas banget buat yang butuh energi buat ngadepin hari sibuk!
+            Mulai hari dengan nasi lemak jasa ayah yang hangat, atau sarapan nikmat di Warung Pojok Mbak Yuni. Setelah
+            itu coba siomay Mandala. Jika ingin yang lebih manis, Milk by Artemy, kedai es krim yang menyegarkan, siap
+            menemai harimu.
+
+            Jangan lewatkan Gudeg Yu Djum yang legendaris rasanya bisa menghilangkan stres, dan Sate Klathak Pak Pong
+            yang bumbunya bikin otak kembali segar setelah ngoding. Kalau lagi lapar banget, Mangut lele asap glagah
+            siap memuaskan perut. House of Raminten dengan suasana unik juga jadi tempat nongkrong asyik, dan Wedang
+            Ronde Mbah Payem hangatkan tubuh setelah kuliah. Yogyakarta bukan cuma soal candi dan budaya, tapi juga
+            kuliner yang bikin perut bahagia!
+          </p>
+          <a class="btn btn-primary btn-xl rounded-pill mt-4" href="peta.html">Selengkapnya</a>
+        </div>
+
+        <!-- Carousel -->
+        <div class="col-md-6">
+          <div id="carouselExample2" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <a href="#">
+                  <img src="assets/img/nasi lemak.jpg" class="d-block w-100" alt="Nasi Lemak">
+                </a>
+                <header>
+                  <h3><a href="https://maps.app.goo.gl/FYEkoSKANBBh3LNYA">Nasi Lemak Jasa Ayah</a></h3>
+                </header>
+                <p>Nikmati kelezatan nasi lemak dengan cita rasa yang tak terlupakan di Nasi Lemak Jasa Ayah. Tempat ini
+                  menyajikan nasi lemak yang sempurna dengan sambal pedas, telur, kacang, dan ikan bilis, siap
+                  menggoyang lidah. Keunikan rasa yang otentik, dipadukan dengan suasana hangat yang mengingatkan pada
+                  masakan rumahan, menjadikan setiap suapan penuh kenangan.</p>
+              </div>
+              <div class="carousel-item">
+                <a href="#">
+                  <img src="assets/img/es.jpg" class="d-block w-100" alt="Ice Cream">
+                </a>
+                <header>
+                  <h3><a href="https://maps.app.goo.gl/o8HGV8p4dREadu7fA">Milk By Artemy</a></h3>
+                </header>
+                <p>Nikmati kesegaran ice cream lezat di Milk by Artemy, tempat yang cocok untuk para pencinta kuliner
+                  dan foto-foto! Ice cream yang disajikan di sini punya rasa yang creamy dan unik, dengan berbagai
+                  pilihan topping yang bikin lidah ketagihan. Selain itu, tempatnya yang super Instagramable dengan
+                  desain modern dan aesthetic pastinya akan membuat momen Anda semakin berkesan.</p>
+              </div>
+              <div class="carousel-item">
+                <a href="#">
+                  <img src="assets/img/gudeg.jpg" class="d-block w-100" alt="Gudeg">
+                </a>
+                <header>
+                  <h3><a href="https://maps.app.goo.gl/3yq714QKDvbonbj27">Gudeng Yu Djum</a></h3>
+                </header>
+                <p>Nikmati sajian Gudeg legendaris dengan cita rasa manis gurih yang khas. Setiap suapan membawa
+                  kenangan yang membuat Anda betah berlama-lama di Jogja. Dengan resep turun-temurun, Gudeg Yu Djum
+                  menjadi ikon kuliner yang wajib dicoba dan tidak boleh dilewatkan begitu saja!</p>
+              </div>
+              <div class="carousel-item">
+                <a href="#">
+                  <img src="assets/img/sate.jpg" class="d-block w-100" alt="Sate Klatak">
+                </a>
+                <header>
+                  <h3><a href="https://maps.app.goo.gl/kn8WhsPekERYJSBG7">Sate Klatak Kambing Muda Pak Tong</a></h3>
+                </header>
+                <p>Nikmati sate kambing yang unik dengan tusuk besi, memberikan cita rasa otentik yang berbeda. Lezatnya
+                  sate ini membuat Anda ingin nambah terus! Dengan bumbu khas yang meresap sempurna, Sate Klathak Pak
+                  Tong jadi pilihan tepat untuk mencicipi kelezatan yang tak terlupakan di Jogja!</p>
+              </div>
+              <div div class="carousel-item">
+                <a href="#">
+                  <img src="assets/img/lele.jpg" class="d-block w-100" alt="Mangut Lele">
+                </a>
+                <header>
+                  <h3><a href="https://maps.app.goo.gl/kn8WhsPekERYJSBG7">Mangut lele asap glagah</a></h3>
+                </header>
+                <p>Lele dimasak dengan resep tradisional yang pedas dan gurih, memberikan sensasi rasa yang menggugah
+                  selera dan bikin Anda ketagihan!</p>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample2"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExample2"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p class="small">&copy; Jenni Putri Ardani 2024</p>
+    <p>Sistem Infromasi Geografis</p>
+    <p>Terima kasih telah mengunjungi situs ini, semoga harimu menyenangkan</p>
+  </footer>
+  <script>
+    function scrollToSection(sectionId) {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  </script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

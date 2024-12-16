@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #edaaaa;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background-color: #0a0909;
+            color: #f0f4f4;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            padding: 10px 0;
+        }
+
+        .navbar-brand {
+            font-size: 1.6em;
+            font-weight: bold;
+            color: #f0f4f4;
+            text-transform: uppercase;
+        }
+
+        .navbar-nav .nav-link {
+            color: #f0f4f4;
+            padding: 8px 12px;
+            font-size: 1em;
+            font-weight: 600;
+        }
+
+        .navbar-nav .nav-link:hover {
+            background-color: #4f4f4f;
+            color: #f0f4f4;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #ec4471;
+        }
+
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #ffffff;
+        }
+
+        th,
+        td {
+            border: 1px solid #bf1818;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #d7005f;
+            color: #20f1f1;
+        }
+
+        button {
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 3px;
+            border: none;
+        }
+
+        .edit-btn {
+            background-color: #67ea86;
+            color: #fff;
+        }
+
+        .delete-btn {
+            background-color: #e46e7a;
+            color: #fff;
+        }
+
+        h1 {
+            text-align: center;
+            color: #7b0d0d;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+
+        .input-form {
+            width: 90%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .input-form input {
+            margin-bottom: 10px;
+        }
+
+        .form-label {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .modal-content {
+            background-color: #f9f9f9;
+            color: #333;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .modal-header {
+            background-color: #d7005f;
+            color: #20f1f1;
+            border-bottom: none;
+            padding-bottom: 0px;
+        }
+
+        .modal-body {
+            background-color: #20f1f1;
+            color: #0e0d0d;
+        }
+
+        .modal-footer {
+            background-color: #f0f0f0;
+            text-align: right;
+        }
+
+        button {
+            background-color: #20f1f1;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        button:hover {
+            background-color: #20f1f1;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-map-marked-alt"></i> WEBGIS Wisata Lan Kuliner Yogyakarta
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="peta.html">
+                            <i class="fas fa-map"></i> Maps
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <i class="fas fa-home"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="info.html">
+                            <i class="fas fa-info-circle"></i> Info
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <div class="container" style="margin-top: 10px;">
+        <h1>Data Pariwisata & Kuliner</h1>
+    </div>
+
+    <!-- Modal for Adding Data -->
+    <div class="modal fade" id="addDataModal" tabindex="-1" aria-labelledby="addDataModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addDataModalLabel">Tambah Data Baru</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="input-form">
+                        <label for="namaTempat" class="form-label">Nama Tempat</label>
+                        <input type="text" id="namaTempat" class="form-control" placeholder="Masukkan Nama Tempat"
+                            required>
+
+                        <label for="kategori" class="form-label">Kategori</label>
+                        <input type="text" id="kategori" class="form-control" placeholder="Masukkan Kategori" required>
+
+                        <label for="longitude" class="form-label">Longitude</label>
+                        <input type="number" id="longitude" class="form-control" placeholder="Masukkan Longitude"
+                            step="any" required>
+
+                        <label for="latitude" class="form-label">Latitude</label>
+                        <input type="number" id="latitude" class="form-control" placeholder="Masukkan Latitude"
+                            step="any" required>
+
+                        <label for="jamOperasional" class="form-label">Jam Operasional</label>
+                        <input type="text" id="jamOperasional" class="form-control"
+                            placeholder="Masukkan Jam Operasional" required>
+
+                        <label for="rangeHarga" class="form-label">Range Harga</label>
+                        <input type="text" id="rangeHarga" class="form-control" placeholder="Masukkan Range Harga"
+                            required>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-primary" onclick="addNewData()">Tambah Data</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Table -->
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nama Tempat</th>
+                    <th>Kategori</th>
+                    <th>Longitude</th>
+                    <th>Latitude</th>
+                    <th>Jam Operasional</th>
+                    <th>Range Harga</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody id="data-table">
+                <!-- Data will be loaded here dynamically -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Tombol "Tambah Data Baru" di bawah tabel -->
+    <div class="container mt-3 text-center">
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addDataModal">Tambah Data Baru</button>
+    </div>
+
+    <script>
+        // Data GeoJSON
+        let geoJSONData = {
+            "type": "FeatureCollection",
+            "features": [
+                { "type": "Feature", "properties": { "Nama_Tempa": "Keraton Yogyakarta", "Kategori": "Pariwisata", "Jam_Operasional": "08:30 - 14:30", "Range_Harga": "Rp 10.000 - Rp 25.000" }, "geometry": { "coordinates": [110.364552, -7.802132] } },
+                { "type": "Feature", "properties": { "Nama_Tempa": "Taman Sari", "Kategori": "Pariwisata", "Jam_Operasional": "09:00 - 15:00", "Range_Harga": "Rp 5.000 - Rp 15.000" }, "geometry": { "coordinates": [110.362779, -7.814362] } },
+                { "type": "Feature", "properties": { "Nama_Tempa": "Gembira Loka Zoo", "Kategori": "Pariwisata", "Jam_Operasional": "08:00 - 16:00", "Range_Harga": "Rp 60.000 - Rp 75.000" }, "geometry": { "coordinates": [110.391873, -7.810918] } },
+                { "type": "Feature", "properties": { "Nama_Tempa": "Nasi Lemak Jasa Ayah", "Kategori": "Kuliner", "Jam_Operasional": "07:00 - 21:30", "Range_Harga": "Rp 5.000 - Rp 50.000" }, "geometry": { "coordinates": [110.35181106, -7.7862535] } },
+                { "type": "Feature", "properties": { "Nama_Tempa": "House of Raminten", "Kategori": "Kuliner", "Jam_Operasional": "09:00 - 24:00", "Range_Harga": "Rp 5.000 - Rp 100.000" }, "geometry": { "coordinates": [110.375334, -7.791132] } }
+            ]
+        };
+    
+        // Function to render table rows based on GeoJSON data
+        function renderTable() {
+            const tableBody = document.getElementById('data-table');
+            tableBody.innerHTML = '';
+    
+            geoJSONData.features.forEach((feature, index) => {
+                const row = document.createElement('tr');
+    
+                // Create table cells
+                row.innerHTML = `
+                    <td>${feature.properties.Nama_Tempa}</td>
+                    <td>${feature.properties.Kategori}</td>
+                    <td>${feature.geometry.coordinates[0]}</td>
+                    <td>${feature.geometry.coordinates[1]}</td>
+                    <td>${feature.properties.Jam_Operasional}</td>
+                    <td>${feature.properties.Range_Harga}</td>
+                    <td>
+                        <button class="edit-btn btn" onclick="editData(${index})">Edit</button>
+                        <button class="delete-btn btn" onclick="deleteData(${index})">Delete</button>
+                    </td>
+                `;
+    
+                tableBody.appendChild(row);
+            });
+        }
+    
+        // Function to handle editing data
+        function editData(index) {
+            const feature = geoJSONData.features[index];
+            // Populate the form with the data to be edited
+            document.getElementById('namaTempat').value = feature.properties.Nama_Tempa;
+            document.getElementById('kategori').value = feature.properties.Kategori;
+            document.getElementById('longitude').value = feature.geometry.coordinates[0];
+            document.getElementById('latitude').value = feature.geometry.coordinates[1];
+            document.getElementById('jamOperasional').value = feature.properties.Jam_Operasional;
+            document.getElementById('rangeHarga').value = feature.properties.Range_Harga;
+    
+            // Change the "Tambah Data" button to "Update Data"
+            const saveButton = document.querySelector('#addDataModal .btn-primary');
+            saveButton.textContent = 'Update Data';
+            saveButton.setAttribute('onclick', `updateData(${index})`);
+        }
+    
+        // Function to handle updating data
+        function updateData(index) {
+            const updatedFeature = geoJSONData.features[index];
+    
+            // Update the data with new values from the form
+            updatedFeature.properties.Nama_Tempa = document.getElementById('namaTempat').value;
+            updatedFeature.properties.Kategori = document.getElementById('kategori').value;
+            updatedFeature.geometry.coordinates[0] = document.getElementById('longitude').value;
+            updatedFeature.geometry.coordinates[1] = document.getElementById('latitude').value;
+            updatedFeature.properties.Jam_Operasional = document.getElementById('jamOperasional').value;
+            updatedFeature.properties.Range_Harga = document.getElementById('rangeHarga').value;
+    
+            // Refresh the table with the updated data
+            renderTable();
+    
+            // Close the modal
+            const modal = bootstrap.Modal.getInstance(document.getElementById('addDataModal'));
+            modal.hide();
+    
+            // Reset the button and form for future additions
+            const saveButton = document.querySelector('#addDataModal .btn-primary');
+            saveButton.textContent = 'Tambah Data';
+            saveButton.setAttribute('onclick', 'addNewData()');
+        }
+    
+        // Function to handle deleting data
+        function deleteData(index) {
+            geoJSONData.features.splice(index, 1); // Remove the selected feature
+            renderTable(); // Re-render the table after deletion
+        }
+    
+        // Function to add new data
+        function addNewData() {
+            const newFeature = {
+                "type": "Feature",
+                "properties": {
+                    "Nama_Tempa": document.getElementById('namaTempat').value,
+                    "Kategori": document.getElementById('kategori').value,
+                    "Jam_Operasional": document.getElementById('jamOperasional').value,
+                    "Range_Harga": document.getElementById('rangeHarga').value
+                },
+                "geometry": {
+                    "coordinates": [
+                        parseFloat(document.getElementById('longitude').value),
+                        parseFloat(document.getElementById('latitude').value)
+                    ]
+                }
+            };
+    
+            geoJSONData.features.push(newFeature); // Add new feature to the GeoJSON data
+            renderTable(); // Re-render the table with the new data
+    
+            // Close the modal
+            const modal = bootstrap.Modal.getInstance(document.getElementById('addDataModal'));
+            modal.hide();
+        }
+    
+        // Initial render of the table
+        renderTable();
+    </script>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
