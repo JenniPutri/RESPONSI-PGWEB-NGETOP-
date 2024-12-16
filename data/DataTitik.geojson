@@ -1,0 +1,116 @@
+{
+    "type": "FeatureCollection",
+    "name": "DataTitik",
+    "crs": {
+      "type": "name",
+      "properties": { "name": "urn:ogc:def:crs:EPSG::4326" }
+    },
+    "features": [
+      {
+        "type": "Feature",
+        "properties": { "Nama_Tempa": "Keraton Yogyakarta", "Kategori": "Pariwisata" },
+        "geometry": { "type": "Point", "coordinates": [110.3642, -7.8053] }
+      },
+      {
+        "type": "Feature",
+        "properties": { "Nama_Tempa": "Taman Sari", "Kategori": "Pariwisata" },
+        "geometry": { "type": "Point", "coordinates": [110.359973, -7.806496] }
+      },
+      {
+        "type": "Feature",
+        "properties": { "Nama_Tempa": "Malioboro", "Kategori": "Pariwisata" },
+        "geometry": { "type": "Point", "coordinates": [110.365713, -7.793359] }
+      },
+      {
+        "type": "Feature",
+        "properties": { "Nama_Tempa": "Museum Benteng Vredeburg", "Kategori": "Pariwisata" },
+        "geometry": { "type": "Point", "coordinates": [110.366378, -7.800375] }
+      },
+      {
+        "type": "Feature",
+        "properties": { "Nama_Tempa": "Alun-Alun Kidul", "Kategori": "Pariwisata" },
+        "geometry": { "type": "Point", "coordinates": [110.365591, -7.806071] }
+      },
+      {
+        "type": "Feature",
+        "properties": { "Nama_Tempa": "Kotagede", "Kategori": "Pariwisata" },
+        "geometry": { "type": "Point", "coordinates": [110.374558, -7.815003] }
+      },
+      {
+        "type": "Feature",
+        "properties": { "Nama_Tempa": "Gembira Loka Zoo", "Kategori": "Pariwisata" },
+        "geometry": { "type": "Point", "coordinates": [110.391873, -7.810918] }
+      },
+      {
+        "type": "Feature",
+        "properties": { "Nama_Tempa": "Tugu Yogyakarta", "Kategori": "Pariwisata" },
+        "geometry": { "type": "Point", "coordinates": [110.367085, -7.7829206] }
+      },
+      {
+        "type": "Feature",
+        "properties": { "Nama_Tempa": "Museum Sonobudoyo", "Kategori": "Pariwisata" },
+        "geometry": { "type": "Point", "coordinates": [110.3639, -7.8023] }
+      },
+      {
+        "type": "Feature",
+        "properties": { "Nama_Tempa": "Titik Nol Kilometer", "Kategori": "Pariwisata" },
+        "geometry": { "type": "Point", "coordinates": [110.3648, -7.8014] }
+      },
+      {
+        "type": "Feature",
+        "properties": { "Nama_Tempa": "Gudeg Yu Djum", "Kategori": "Kuliner" },
+        "geometry": { "type": "Point", "coordinates": [110.372194, -7.797819] }
+      },
+      {
+        "type": "Feature",
+        "properties": { "Nama_Tempa": "Angkringan Lik Man", "Kategori": "Kuliner" },
+        "geometry": { "type": "Point", "coordinates": [110.371687, -7.791536] }
+      },
+      {
+        "type": "Feature",
+        "properties": { "Nama_Tempa": "Siomay Mandala", "Kategori": "Kuliner" },
+        "geometry": { "type": "Point", "coordinates": [110.383092, -7.795345] }
+      },
+      {
+        "type": "Feature",
+        "properties": { "Nama_Tempa": "Sate Klathak Pak Tong", "Kategori": "Kuliner" },
+        "geometry": { "type": "Point", "coordinates": [110.357739, -7.818221] }
+      },
+      {
+        "type": "Feature",
+        "properties": { "Nama_Tempa": "Mangut lele asap glagah", "Kategori": "Kuliner" },
+        "geometry": { "type": "Point", "coordinates": [110.3891620, -7.7987059] }
+      },
+      {
+        "type": "Feature",
+        "properties": { "Nama_Tempa": "Bakmi Mbah Mo", "Kategori": "Kuliner" },
+        "geometry": { "type": "Point", "coordinates": [110.357040, -7.820332] }
+      },
+      {
+        "type": "Feature",
+        "properties": { "Nama_Tempa": "Milk by Artemy", "Kategori": "Kedai Es Krim" },
+        "geometry": { "type": "Point", "coordinates": [110.363582, -7.7811912] }
+      },
+      {
+        "type": "Feature",
+        "properties": { "Nama_Tempa": "House of Raminten", "Kategori": "Kuliner" },
+        "geometry": { "type": "Point", "coordinates": [110.375334, -7.791132] }
+      },
+      {
+        "type": "Feature",
+        "properties": { "Nama_Tempa": "Nasi Lemak Jasa Ayah", "Kategori": "Kuliner Pagi" },
+        "geometry": { "type": "Point", "coordinates": [110.35181106, -7.7862535] }
+      },
+      {
+        "type": "Feature",
+        "properties": { "Nama_Tempa": "Warung Pojok Mbak Yuni", "Kategori": "Kuliner Pagi" },
+        "geometry": { "type": "Point", "coordinates": [110.3702244, -7.7872667] }
+      },
+      {
+        "type": "Feature",
+        "properties": { "Nama_Tempa": "Wedang Ronde Mbah Payem", "Kategori": "Kuliner" },
+        "geometry": { "type": "Point", "coordinates": [110.369853, -7.791460] }
+      }
+    ]
+  }
+  
